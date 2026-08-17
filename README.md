@@ -33,24 +33,20 @@ Incident response teams increasingly rely on AI agents to triage and diagnose is
 
 An orchestrator coordinates single-purpose sub-agents in a ReAct loop, aggregating their outputs into a ranked, confidence-scored root-cause hypothesis.
 
-```
-                        ┌─────────────────┐
-                        │   Orchestrator    │
-                        │  (LangGraph ReAct) │
-                        └────────┬──────────┘
-                 ┌────────────────┼────────────────┐
-                 ▼                ▼                ▼
-         ┌───────────────┐ ┌──────────────┐ ┌────────────────┐
-         │  Log Reader     │ │ Metrics       │ │ Trace           │
-         │  Sub-Agent      │ │ Analyst       │ │ Inspector       │
-         │                 │ │ Sub-Agent     │ │ Sub-Agent       │
-         └───────┬─────────┘ └──────┬────────┘ └────────┬────────┘
-                  └──────────────────┼──────────────────┘
-                                     ▼
-                        ┌─────────────────────┐
-                        │ Hypothesis Generator  │
-                        │ (ranked + confidence)  │
-                        └─────────────────────┘
+```mermaid
+flowchart TD
+    O["Orchestrator<br/>(LangGraph ReAct)"]
+    L["Log Reader<br/>Sub-Agent"]
+    M["Metrics Analyst<br/>Sub-Agent"]
+    T["Trace Inspector<br/>Sub-Agent"]
+    H["Hypothesis Generator<br/>(ranked + confidence)"]
+
+    O --> L
+    O --> M
+    O --> T
+    L --> H
+    M --> H
+    T --> H
 ```
 
 **Sub-agents (single responsibility each):**
