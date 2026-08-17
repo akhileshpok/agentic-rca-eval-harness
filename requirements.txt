@@ -1,0 +1,25 @@
+# Orchestration
+langgraph>=0.2.0
+langchain>=0.3.0
+langchain-core>=0.3.0
+
+# State / data modeling
+pydantic>=2.0
+
+# Eval
+ragas>=0.2.0
+promptfoo>=0.1.0  # if unavailable via pip, install via npm instead: npm install -g promptfoo
+
+# LLM providers (swap/add as needed)
+anthropic>=0.30.0
+ollama>=0.3.0
+
+# Observability
+opentelemetry-api>=1.27.0
+opentelemetry-sdk>=1.27.0
+opentelemetry-exporter-otlp>=1.27.0
+
+# Utilities
+python-dotenv>=1.0.0
+pandas>=2.0.0
+matplotlib>=3.8.0
