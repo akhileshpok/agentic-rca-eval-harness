@@ -1,0 +1,3906 @@
+[
+  {
+    "incident_id": "incident-c8cc752b",
+    "index": 1,
+    "generated_at": "2026-08-18T17:28:41.376011+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:46:00.375820+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:05.375820+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:06.375820+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 147ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:23.375820+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=983833f9"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:46.375820+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:46.375820+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:48.375820+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=56b3619c-368 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:33.375820+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=d126b023-930 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:38.375820+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=bc4e7bf3"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:47:22.375820+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 27,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:24.375820+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 21,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:26.375820+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 78,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:55.375820+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 73,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:37.375820+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "5b3f1966-23eb-4c8f-8e24-8802a20e5e1e",
+      "spans": [
+        {
+          "span_id": "d646e468",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:46:41.375820+00:00",
+          "duration_ms": 5399,
+          "status": "error"
+        },
+        {
+          "span_id": "ca8a30f0",
+          "parent_span_id": "d646e468",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:41.375820+00:00",
+          "duration_ms": 87,
+          "status": "ok"
+        },
+        {
+          "span_id": "9003c606",
+          "parent_span_id": "d646e468",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:43.375820+00:00",
+          "duration_ms": 55,
+          "status": "ok"
+        },
+        {
+          "span_id": "aca5f177",
+          "parent_span_id": "d646e468",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:39.375820+00:00",
+          "duration_ms": 21,
+          "status": "ok"
+        },
+        {
+          "span_id": "e7522fe3",
+          "parent_span_id": "d646e468",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:42.375820+00:00",
+          "duration_ms": 3480,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-c41d0bb2",
+    "index": 2,
+    "generated_at": "2026-08-18T17:28:41.376140+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T17:06:00.376134+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 55ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:00.376134+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:23.376134+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=fa55f6b1"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:31.376134+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - processed request in 211ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:38.376134+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:55.376134+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 127ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:10.376134+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - cache hit for key=a9e592d8"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:12.376134+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:31.376134+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T17:06:11.376134+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 64,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:26.376134+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 42,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:25.376134+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 150,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:12.376134+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 123,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:50.376134+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "adebe235-39d3-477e-9333-6596bb52a30e",
+      "spans": [
+        {
+          "span_id": "3311f536",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T17:06:41.376134+00:00",
+          "duration_ms": 7224,
+          "status": "error"
+        },
+        {
+          "span_id": "78d71382",
+          "parent_span_id": "3311f536",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:41.376134+00:00",
+          "duration_ms": 181,
+          "status": "ok"
+        },
+        {
+          "span_id": "106a22a4",
+          "parent_span_id": "3311f536",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:39.376134+00:00",
+          "duration_ms": 22,
+          "status": "ok"
+        },
+        {
+          "span_id": "bc314c37",
+          "parent_span_id": "3311f536",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:41.376134+00:00",
+          "duration_ms": 153,
+          "status": "ok"
+        },
+        {
+          "span_id": "6cb91ce9",
+          "parent_span_id": "3311f536",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:43.376134+00:00",
+          "duration_ms": 5398,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-0d2552e0",
+    "index": 3,
+    "generated_at": "2026-08-18T17:28:41.376240+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:32:46.376236+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:32:51.376236+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=06362658-7de status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:33:19.376236+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 282ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:33:31.376236+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:33:35.376236+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:33:45.376236+00:00",
+        "level": "FATAL",
+        "service": "payment-service",
+        "message": "FATAL payment-service - OutOfMemoryError: Java heap space"
+      },
+      {
+        "timestamp": "2026-08-18T15:34:11.376236+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:34:12.376236+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=958d0b1e"
+      },
+      {
+        "timestamp": "2026-08-18T15:34:38.376236+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:33:00.376236+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 115,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:34:19.376236+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 128,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:34:18.376236+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 149,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:33:01.376236+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 63,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:33:39.376236+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.memory.used_mb",
+        "value": 3900,
+        "threshold": 4096,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "766e7c87-49cc-4e7a-8c18-63b5135650a3",
+      "spans": [
+        {
+          "span_id": "f25031bf",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:33:41.376236+00:00",
+          "duration_ms": 6902,
+          "status": "error"
+        },
+        {
+          "span_id": "2eaaaa0c",
+          "parent_span_id": "f25031bf",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:33:43.376236+00:00",
+          "duration_ms": 25,
+          "status": "ok"
+        },
+        {
+          "span_id": "3845fff4",
+          "parent_span_id": "f25031bf",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:33:42.376236+00:00",
+          "duration_ms": 70,
+          "status": "ok"
+        },
+        {
+          "span_id": "729172e6",
+          "parent_span_id": "f25031bf",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:33:39.376236+00:00",
+          "duration_ms": 190,
+          "status": "ok"
+        },
+        {
+          "span_id": "128d001e",
+          "parent_span_id": "f25031bf",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:33:39.376236+00:00",
+          "duration_ms": 4240,
+          "status": "error",
+          "error_message": "payment-service span failed: connection reset by peer"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Memory leak in payment-service causing OOM restarts",
+      "affected_service": "payment-service"
+    }
+  },
+  {
+    "incident_id": "incident-d9d64baf",
+    "index": 4,
+    "generated_at": "2026-08-18T17:28:41.376335+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:43:33.376332+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:43:43.376332+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=4c270ba5"
+      },
+      {
+        "timestamp": "2026-08-18T15:43:44.376332+00:00",
+        "level": "WARN",
+        "service": "auth-service",
+        "message": "WARN auth-service - cache miss rate=0.98 falling back to DB"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:01.376332+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:06.376332+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=48b7a63e"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:08.376332+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:18.376332+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:31.376332+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 273ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:31.376332+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=ad22211d-79d status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:43:52.376332+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 69,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:42:49.376332+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 104,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:15.376332+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 118,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:11.376332+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 21,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:43:36.376332+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.cache.hit_rate",
+        "value": 0.02,
+        "threshold": 0.8,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "20b27c07-c0a1-442a-bdbb-386847e6913d",
+      "spans": [
+        {
+          "span_id": "78d2c15d",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:43:41.376332+00:00",
+          "duration_ms": 6791,
+          "status": "error"
+        },
+        {
+          "span_id": "aa4abbea",
+          "parent_span_id": "78d2c15d",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:43:42.376332+00:00",
+          "duration_ms": 199,
+          "status": "ok"
+        },
+        {
+          "span_id": "48b7c56b",
+          "parent_span_id": "78d2c15d",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:43:42.376332+00:00",
+          "duration_ms": 174,
+          "status": "ok"
+        },
+        {
+          "span_id": "16b7fb8c",
+          "parent_span_id": "78d2c15d",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:43:43.376332+00:00",
+          "duration_ms": 164,
+          "status": "ok"
+        },
+        {
+          "span_id": "9906bbba",
+          "parent_span_id": "78d2c15d",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:43:40.376332+00:00",
+          "duration_ms": 5244,
+          "status": "error",
+          "error_message": "auth-service span latency=4200ms (p99 baseline=120ms)"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Auth service latency spike due to expired cache",
+      "affected_service": "auth-service"
+    }
+  },
+  {
+    "incident_id": "incident-faa16364",
+    "index": 5,
+    "generated_at": "2026-08-18T17:28:41.376429+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:35:45.376426+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:35:48.376426+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:16.376426+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=41fa5e96-f1c status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:31.376426+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:32.376426+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=14785c88"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:33.376426+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=64b2f7fe-010 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:37.376426+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:45.376426+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 6ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:50.376426+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=3d531475-c39 status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:35:49.376426+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 49,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:37:22.376426+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 119,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:39.376426+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 132,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:21.376426+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 121,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:46.376426+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "85761262-db9b-42b3-bbbf-49a64c70acef",
+      "spans": [
+        {
+          "span_id": "b934b45c",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:36:41.376426+00:00",
+          "duration_ms": 5048,
+          "status": "error"
+        },
+        {
+          "span_id": "b644f865",
+          "parent_span_id": "b934b45c",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:41.376426+00:00",
+          "duration_ms": 156,
+          "status": "ok"
+        },
+        {
+          "span_id": "288b3ef3",
+          "parent_span_id": "b934b45c",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:41.376426+00:00",
+          "duration_ms": 159,
+          "status": "ok"
+        },
+        {
+          "span_id": "f618cc09",
+          "parent_span_id": "b934b45c",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:42.376426+00:00",
+          "duration_ms": 106,
+          "status": "ok"
+        },
+        {
+          "span_id": "90cf34fb",
+          "parent_span_id": "b934b45c",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:42.376426+00:00",
+          "duration_ms": 5371,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-36849c48",
+    "index": 6,
+    "generated_at": "2026-08-18T17:28:41.376523+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:23:43.376520+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:23:49.376520+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:02.376520+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=c112876f-802 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:03.376520+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=b5c87aac-691 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:05.376520+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:11.376520+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=16cc73aa-411 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:23.376520+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:37.376520+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:04.376520+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 258ms"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:24:17.376520+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 113,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:45.376520+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 70,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:36.376520+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 25,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:32.376520+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 120,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:37.376520+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "fc78e450-c7c9-4e5c-a3c6-99a12e915fd9",
+      "spans": [
+        {
+          "span_id": "ed9b3438",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:24:41.376520+00:00",
+          "duration_ms": 6764,
+          "status": "error"
+        },
+        {
+          "span_id": "1b29407a",
+          "parent_span_id": "ed9b3438",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:42.376520+00:00",
+          "duration_ms": 83,
+          "status": "ok"
+        },
+        {
+          "span_id": "117f0b00",
+          "parent_span_id": "ed9b3438",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:42.376520+00:00",
+          "duration_ms": 146,
+          "status": "ok"
+        },
+        {
+          "span_id": "17000967",
+          "parent_span_id": "ed9b3438",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:39.376520+00:00",
+          "duration_ms": 176,
+          "status": "ok"
+        },
+        {
+          "span_id": "bf5f844d",
+          "parent_span_id": "ed9b3438",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:39.376520+00:00",
+          "duration_ms": 5983,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-0db21d3d",
+    "index": 7,
+    "generated_at": "2026-08-18T17:28:41.376618+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:59:43.376615+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 38ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:59:46.376615+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 84ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:21.376615+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=4511201c-ae7 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:27.376615+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:36.376615+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=ab786c30-9c0 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:39.376615+00:00",
+        "level": "FATAL",
+        "service": "payment-service",
+        "message": "FATAL payment-service - OutOfMemoryError: Java heap space"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:51.376615+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=476e4102"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:52.376615+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:01:34.376615+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:00:12.376615+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 68,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:00.376615+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 63,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:35.376615+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 30,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:31.376615+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 95,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:43.376615+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.memory.used_mb",
+        "value": 3900,
+        "threshold": 4096,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "df482cf6-98de-4b07-aef3-94fd69d49533",
+      "spans": [
+        {
+          "span_id": "0f283763",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:00:41.376615+00:00",
+          "duration_ms": 6272,
+          "status": "error"
+        },
+        {
+          "span_id": "e2483347",
+          "parent_span_id": "0f283763",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:00:43.376615+00:00",
+          "duration_ms": 43,
+          "status": "ok"
+        },
+        {
+          "span_id": "20398724",
+          "parent_span_id": "0f283763",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:00:39.376615+00:00",
+          "duration_ms": 131,
+          "status": "ok"
+        },
+        {
+          "span_id": "ee951c37",
+          "parent_span_id": "0f283763",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:00:40.376615+00:00",
+          "duration_ms": 114,
+          "status": "ok"
+        },
+        {
+          "span_id": "1792804a",
+          "parent_span_id": "0f283763",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:00:40.376615+00:00",
+          "duration_ms": 3577,
+          "status": "error",
+          "error_message": "payment-service span failed: connection reset by peer"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Memory leak in payment-service causing OOM restarts",
+      "affected_service": "payment-service"
+    }
+  },
+  {
+    "incident_id": "incident-8fd03474",
+    "index": 8,
+    "generated_at": "2026-08-18T17:28:41.376710+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:58:43.376707+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=5f32ee43-91f status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:58:56.376707+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:58:59.376707+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:59:39.376707+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=3215c020-fba status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:59:41.376707+00:00",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "ERROR api-gateway - rate limit applied to internal service traffic: rule=global_limit"
+      },
+      {
+        "timestamp": "2026-08-18T15:59:46.376707+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:17.376707+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:28.376707+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:40.376707+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:58:55.376707+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 52,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:17.376707+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 125,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:00:14.376707+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 142,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:59:37.376707+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 57,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:59:34.376707+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.requests.dropped_rate",
+        "value": 0.34,
+        "threshold": 0.05,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "3f092c98-e3fd-42af-9562-fd71d2ce4daf",
+      "spans": [
+        {
+          "span_id": "9e6d7afc",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:59:41.376707+00:00",
+          "duration_ms": 7403,
+          "status": "error"
+        },
+        {
+          "span_id": "bb6131f5",
+          "parent_span_id": "9e6d7afc",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:59:41.376707+00:00",
+          "duration_ms": 30,
+          "status": "ok"
+        },
+        {
+          "span_id": "e1811620",
+          "parent_span_id": "9e6d7afc",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:59:40.376707+00:00",
+          "duration_ms": 170,
+          "status": "ok"
+        },
+        {
+          "span_id": "77440cc7",
+          "parent_span_id": "9e6d7afc",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:59:39.376707+00:00",
+          "duration_ms": 186,
+          "status": "ok"
+        },
+        {
+          "span_id": "97befd35",
+          "parent_span_id": "9e6d7afc",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:59:42.376707+00:00",
+          "duration_ms": 151,
+          "status": "ok"
+        },
+        {
+          "span_id": "22a35911",
+          "parent_span_id": "9e6d7afc",
+          "service": "api-gateway",
+          "operation": "process",
+          "start_time": "2026-08-18T15:59:40.376707+00:00",
+          "duration_ms": 4448,
+          "status": "error",
+          "error_message": "api-gateway span returned 429 Too Many Requests to payment-service"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "API gateway rate limiter misconfiguration dropping requests",
+      "affected_service": "api-gateway"
+    }
+  },
+  {
+    "incident_id": "incident-2a3e23c4",
+    "index": 9,
+    "generated_at": "2026-08-18T17:28:41.376805+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:35:43.376802+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:29.376802+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=3fc9f6aa"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:46.376802+00:00",
+        "level": "FATAL",
+        "service": "payment-service",
+        "message": "FATAL payment-service - OutOfMemoryError: Java heap space"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:47.376802+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:55.376802+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 82ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:58.376802+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=c0a9a8dd"
+      },
+      {
+        "timestamp": "2026-08-18T16:37:04.376802+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:37:27.376802+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 51ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:37:36.376802+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - connected to upstream"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:36:48.376802+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 98,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:45.376802+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 103,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:48.376802+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 36,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:50.376802+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 64,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:36:45.376802+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.memory.used_mb",
+        "value": 3900,
+        "threshold": 4096,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "ac42efae-27f2-43b8-bbeb-dfc75a2fc346",
+      "spans": [
+        {
+          "span_id": "a62933ac",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:36:41.376802+00:00",
+          "duration_ms": 7001,
+          "status": "error"
+        },
+        {
+          "span_id": "59257c49",
+          "parent_span_id": "a62933ac",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:40.376802+00:00",
+          "duration_ms": 154,
+          "status": "ok"
+        },
+        {
+          "span_id": "1630a364",
+          "parent_span_id": "a62933ac",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:43.376802+00:00",
+          "duration_ms": 49,
+          "status": "ok"
+        },
+        {
+          "span_id": "41c9f50b",
+          "parent_span_id": "a62933ac",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:42.376802+00:00",
+          "duration_ms": 90,
+          "status": "ok"
+        },
+        {
+          "span_id": "d4e8ef78",
+          "parent_span_id": "a62933ac",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:36:39.376802+00:00",
+          "duration_ms": 3382,
+          "status": "error",
+          "error_message": "payment-service span failed: connection reset by peer"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Memory leak in payment-service causing OOM restarts",
+      "affected_service": "payment-service"
+    }
+  },
+  {
+    "incident_id": "incident-422e3a3d",
+    "index": 10,
+    "generated_at": "2026-08-18T17:28:41.376897+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:47:41.376894+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 225ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:49.376894+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=bfc18455"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:51.376894+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=b6f28b90-e30 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:56.376894+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=a26fb708"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:57.376894+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=aa626cb1-64e status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:59.376894+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 196ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:02.376894+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=4f3de741-d9b status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:17.376894+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:41.376894+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:48:57.376894+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 131,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:51.376894+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 35,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:44.376894+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 55,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:20.376894+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 61,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:48:38.376894+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "dcf3c083-10a0-4c61-ab63-bcb6fbb7430f",
+      "spans": [
+        {
+          "span_id": "34f9e261",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:48:41.376894+00:00",
+          "duration_ms": 7327,
+          "status": "error"
+        },
+        {
+          "span_id": "f69ba996",
+          "parent_span_id": "34f9e261",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:48:39.376894+00:00",
+          "duration_ms": 13,
+          "status": "ok"
+        },
+        {
+          "span_id": "8b7e02d5",
+          "parent_span_id": "34f9e261",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:48:42.376894+00:00",
+          "duration_ms": 46,
+          "status": "ok"
+        },
+        {
+          "span_id": "1bbec616",
+          "parent_span_id": "34f9e261",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:48:42.376894+00:00",
+          "duration_ms": 96,
+          "status": "ok"
+        },
+        {
+          "span_id": "2d872acf",
+          "parent_span_id": "34f9e261",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:48:42.376894+00:00",
+          "duration_ms": 4119,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-3143ae87",
+    "index": 11,
+    "generated_at": "2026-08-18T17:28:41.376989+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:44:05.376986+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=799d55f9"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:16.376986+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:28.376986+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=00d7d775"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:36.376986+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:39.376986+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:09.376986+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:13.376986+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 216ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:30.376986+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 116ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:31.376986+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 288ms"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:44:27.376986+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 35,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:23.376986+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 117,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:41.376986+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 119,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:05.376986+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 145,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:36.376986+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "0d70c095-93dc-4d70-9bb0-33b4b18a9039",
+      "spans": [
+        {
+          "span_id": "ed3da80a",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:44:41.376986+00:00",
+          "duration_ms": 6184,
+          "status": "error"
+        },
+        {
+          "span_id": "c1be5566",
+          "parent_span_id": "ed3da80a",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:40.376986+00:00",
+          "duration_ms": 22,
+          "status": "ok"
+        },
+        {
+          "span_id": "1346f6bd",
+          "parent_span_id": "ed3da80a",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:42.376986+00:00",
+          "duration_ms": 191,
+          "status": "ok"
+        },
+        {
+          "span_id": "76334b87",
+          "parent_span_id": "ed3da80a",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:39.376986+00:00",
+          "duration_ms": 81,
+          "status": "ok"
+        },
+        {
+          "span_id": "9aae57ff",
+          "parent_span_id": "ed3da80a",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:42.376986+00:00",
+          "duration_ms": 4633,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-2c2708f4",
+    "index": 12,
+    "generated_at": "2026-08-18T17:28:41.377085+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T17:20:46.377082+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=f50dcb4a-f00 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:20:55.377082+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=46ae31fd"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:31.377082+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:36.377082+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=7e85710f"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:44.377082+00:00",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "ERROR api-gateway - rate limit applied to internal service traffic: rule=global_limit"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:48.377082+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:22:03.377082+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=29f8534f-d58 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:22:15.377082+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=a7d886c5"
+      },
+      {
+        "timestamp": "2026-08-18T17:22:40.377082+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=0dfb61fb-cf1 status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T17:21:49.377082+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 45,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:58.377082+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 75,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:29.377082+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 56,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:20:41.377082+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 88,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:21:40.377082+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.requests.dropped_rate",
+        "value": 0.34,
+        "threshold": 0.05,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "146e3f87-c3b4-4488-838c-38c1f370d3fa",
+      "spans": [
+        {
+          "span_id": "d877c4c7",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T17:21:41.377082+00:00",
+          "duration_ms": 4323,
+          "status": "error"
+        },
+        {
+          "span_id": "8d3436a3",
+          "parent_span_id": "d877c4c7",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:21:42.377082+00:00",
+          "duration_ms": 182,
+          "status": "ok"
+        },
+        {
+          "span_id": "bcdc4a39",
+          "parent_span_id": "d877c4c7",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:21:43.377082+00:00",
+          "duration_ms": 152,
+          "status": "ok"
+        },
+        {
+          "span_id": "75755c96",
+          "parent_span_id": "d877c4c7",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T17:21:39.377082+00:00",
+          "duration_ms": 90,
+          "status": "ok"
+        },
+        {
+          "span_id": "a27efe92",
+          "parent_span_id": "d877c4c7",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:21:41.377082+00:00",
+          "duration_ms": 11,
+          "status": "ok"
+        },
+        {
+          "span_id": "e3159403",
+          "parent_span_id": "d877c4c7",
+          "service": "api-gateway",
+          "operation": "process",
+          "start_time": "2026-08-18T17:21:41.377082+00:00",
+          "duration_ms": 5649,
+          "status": "error",
+          "error_message": "api-gateway span returned 429 Too Many Requests to payment-service"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "API gateway rate limiter misconfiguration dropping requests",
+      "affected_service": "api-gateway"
+    }
+  },
+  {
+    "incident_id": "incident-c6d8d742",
+    "index": 13,
+    "generated_at": "2026-08-18T17:28:41.377180+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:10:52.377177+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 92ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:11.377177+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=d4045c87"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:21.377177+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:35.377177+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:37.377177+00:00",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "ERROR api-gateway - rate limit applied to internal service traffic: rule=global_limit"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:57.377177+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=e71110a6"
+      },
+      {
+        "timestamp": "2026-08-18T16:12:02.377177+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 247ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:12:13.377177+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=2504eb9a"
+      },
+      {
+        "timestamp": "2026-08-18T16:12:35.377177+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=8eedb15e-9e1 status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:11:41.377177+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 128,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:12:18.377177+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 75,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:33.377177+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 84,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:49.377177+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 136,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:11:45.377177+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.requests.dropped_rate",
+        "value": 0.34,
+        "threshold": 0.05,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "1cf33e13-013b-4179-a1c0-e13abf4b5b65",
+      "spans": [
+        {
+          "span_id": "c727cbdb",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:11:41.377177+00:00",
+          "duration_ms": 5464,
+          "status": "error"
+        },
+        {
+          "span_id": "3dbb11de",
+          "parent_span_id": "c727cbdb",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:11:43.377177+00:00",
+          "duration_ms": 165,
+          "status": "ok"
+        },
+        {
+          "span_id": "d0894818",
+          "parent_span_id": "c727cbdb",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:11:40.377177+00:00",
+          "duration_ms": 149,
+          "status": "ok"
+        },
+        {
+          "span_id": "6fe0ab3c",
+          "parent_span_id": "c727cbdb",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:11:43.377177+00:00",
+          "duration_ms": 99,
+          "status": "ok"
+        },
+        {
+          "span_id": "d6a484e0",
+          "parent_span_id": "c727cbdb",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:11:41.377177+00:00",
+          "duration_ms": 110,
+          "status": "ok"
+        },
+        {
+          "span_id": "68ed9650",
+          "parent_span_id": "c727cbdb",
+          "service": "api-gateway",
+          "operation": "process",
+          "start_time": "2026-08-18T16:11:40.377177+00:00",
+          "duration_ms": 4895,
+          "status": "error",
+          "error_message": "api-gateway span returned 429 Too Many Requests to payment-service"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "API gateway rate limiter misconfiguration dropping requests",
+      "affected_service": "api-gateway"
+    }
+  },
+  {
+    "incident_id": "incident-5ba9a4ac",
+    "index": 14,
+    "generated_at": "2026-08-18T17:28:41.377275+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:57:48.377272+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:57:55.377272+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:17.377272+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:23.377272+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:25.377272+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=f0b315e1"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:38.377272+00:00",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "ERROR api-gateway - rate limit applied to internal service traffic: rule=global_limit"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:49.377272+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=96f28c6a"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:50.377272+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:59:02.377272+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=cf88990a"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:58:42.377272+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 122,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:59:22.377272+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 79,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:59:36.377272+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 141,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:43.377272+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 133,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:58:42.377272+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.requests.dropped_rate",
+        "value": 0.34,
+        "threshold": 0.05,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "184ec46b-c651-4077-aa38-a3b4398ae764",
+      "spans": [
+        {
+          "span_id": "a89b20fe",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:58:41.377272+00:00",
+          "duration_ms": 7562,
+          "status": "error"
+        },
+        {
+          "span_id": "b1edf32b",
+          "parent_span_id": "a89b20fe",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:58:43.377272+00:00",
+          "duration_ms": 22,
+          "status": "ok"
+        },
+        {
+          "span_id": "82df7da0",
+          "parent_span_id": "a89b20fe",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:58:41.377272+00:00",
+          "duration_ms": 92,
+          "status": "ok"
+        },
+        {
+          "span_id": "5a43ff12",
+          "parent_span_id": "a89b20fe",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:58:41.377272+00:00",
+          "duration_ms": 61,
+          "status": "ok"
+        },
+        {
+          "span_id": "7205d8df",
+          "parent_span_id": "a89b20fe",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:58:42.377272+00:00",
+          "duration_ms": 100,
+          "status": "ok"
+        },
+        {
+          "span_id": "4b3667e5",
+          "parent_span_id": "a89b20fe",
+          "service": "api-gateway",
+          "operation": "process",
+          "start_time": "2026-08-18T16:58:42.377272+00:00",
+          "duration_ms": 4865,
+          "status": "error",
+          "error_message": "api-gateway span returned 429 Too Many Requests to payment-service"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "API gateway rate limiter misconfiguration dropping requests",
+      "affected_service": "api-gateway"
+    }
+  },
+  {
+    "incident_id": "incident-571a78e5",
+    "index": 15,
+    "generated_at": "2026-08-18T17:28:41.377372+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T17:05:48.377369+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:05:57.377369+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:05.377369+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:21.377369+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 94ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:25.377369+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=2f0f7031"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:40.377369+00:00",
+        "level": "FATAL",
+        "service": "payment-service",
+        "message": "FATAL payment-service - OutOfMemoryError: Java heap space"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:42.377369+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:10.377369+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=a4f052cf-b67 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:33.377369+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=a13281dd"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T17:06:00.377369+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 20,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:11.377369+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 127,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:03.377369+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 74,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:09.377369+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 84,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:36.377369+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.memory.used_mb",
+        "value": 3900,
+        "threshold": 4096,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "4cefdc16-d43c-497c-b59d-fe792d287d76",
+      "spans": [
+        {
+          "span_id": "e87f6af6",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T17:06:41.377369+00:00",
+          "duration_ms": 5728,
+          "status": "error"
+        },
+        {
+          "span_id": "18c9faf4",
+          "parent_span_id": "e87f6af6",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:39.377369+00:00",
+          "duration_ms": 114,
+          "status": "ok"
+        },
+        {
+          "span_id": "6076a71a",
+          "parent_span_id": "e87f6af6",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:39.377369+00:00",
+          "duration_ms": 200,
+          "status": "ok"
+        },
+        {
+          "span_id": "758b03a7",
+          "parent_span_id": "e87f6af6",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:43.377369+00:00",
+          "duration_ms": 161,
+          "status": "ok"
+        },
+        {
+          "span_id": "769df982",
+          "parent_span_id": "e87f6af6",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:42.377369+00:00",
+          "duration_ms": 5085,
+          "status": "error",
+          "error_message": "payment-service span failed: connection reset by peer"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Memory leak in payment-service causing OOM restarts",
+      "affected_service": "payment-service"
+    }
+  },
+  {
+    "incident_id": "incident-0caed1ea",
+    "index": 16,
+    "generated_at": "2026-08-18T17:28:41.377465+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:19:44.377462+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=454f6f49-445 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:20.377462+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:28.377462+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:41.377462+00:00",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "ERROR api-gateway - rate limit applied to internal service traffic: rule=global_limit"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:52.377462+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:59.377462+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 297ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:21:09.377462+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:21:16.377462+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:21:30.377462+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=5231f808-7eb status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:21:38.377462+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 26,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:03.377462+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 47,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:21:10.377462+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 118,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:55.377462+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 101,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:20:37.377462+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.requests.dropped_rate",
+        "value": 0.34,
+        "threshold": 0.05,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "e2b20681-c55d-4d13-8e45-d178b91070e5",
+      "spans": [
+        {
+          "span_id": "93203d11",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:20:41.377462+00:00",
+          "duration_ms": 6755,
+          "status": "error"
+        },
+        {
+          "span_id": "e4f61886",
+          "parent_span_id": "93203d11",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:20:42.377462+00:00",
+          "duration_ms": 39,
+          "status": "ok"
+        },
+        {
+          "span_id": "826d1e12",
+          "parent_span_id": "93203d11",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:20:41.377462+00:00",
+          "duration_ms": 68,
+          "status": "ok"
+        },
+        {
+          "span_id": "8f98a512",
+          "parent_span_id": "93203d11",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:20:40.377462+00:00",
+          "duration_ms": 40,
+          "status": "ok"
+        },
+        {
+          "span_id": "65bf2835",
+          "parent_span_id": "93203d11",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:20:39.377462+00:00",
+          "duration_ms": 20,
+          "status": "ok"
+        },
+        {
+          "span_id": "18322cdf",
+          "parent_span_id": "93203d11",
+          "service": "api-gateway",
+          "operation": "process",
+          "start_time": "2026-08-18T16:20:41.377462+00:00",
+          "duration_ms": 4817,
+          "status": "error",
+          "error_message": "api-gateway span returned 429 Too Many Requests to payment-service"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "API gateway rate limiter misconfiguration dropping requests",
+      "affected_service": "api-gateway"
+    }
+  },
+  {
+    "incident_id": "incident-361efb92",
+    "index": 17,
+    "generated_at": "2026-08-18T17:28:41.377561+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T17:01:54.377558+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 179ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:18.377558+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=332074de-519 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:26.377558+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=fe0b6044-b6d status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:27.377558+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:41.377558+00:00",
+        "level": "ERROR",
+        "service": "api-gateway",
+        "message": "ERROR api-gateway - rate limit applied to internal service traffic: rule=global_limit"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:54.377558+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=b8835d74-274 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:03:07.377558+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T17:03:21.377558+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 259ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:03:36.377558+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=3952c5d7-51c status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T17:01:59.377558+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 56,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:03:36.377558+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 46,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:28.377558+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 91,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:03:32.377558+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 76,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:02:41.377558+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.requests.dropped_rate",
+        "value": 0.34,
+        "threshold": 0.05,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "939919bd-013d-46c9-b781-0958bb0fa4ac",
+      "spans": [
+        {
+          "span_id": "214b34c7",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T17:02:41.377558+00:00",
+          "duration_ms": 6192,
+          "status": "error"
+        },
+        {
+          "span_id": "386f6c8c",
+          "parent_span_id": "214b34c7",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:02:42.377558+00:00",
+          "duration_ms": 168,
+          "status": "ok"
+        },
+        {
+          "span_id": "cec3e314",
+          "parent_span_id": "214b34c7",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:02:39.377558+00:00",
+          "duration_ms": 36,
+          "status": "ok"
+        },
+        {
+          "span_id": "8a19fc96",
+          "parent_span_id": "214b34c7",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T17:02:41.377558+00:00",
+          "duration_ms": 14,
+          "status": "ok"
+        },
+        {
+          "span_id": "76125690",
+          "parent_span_id": "214b34c7",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:02:39.377558+00:00",
+          "duration_ms": 125,
+          "status": "ok"
+        },
+        {
+          "span_id": "f7697a51",
+          "parent_span_id": "214b34c7",
+          "service": "api-gateway",
+          "operation": "process",
+          "start_time": "2026-08-18T17:02:42.377558+00:00",
+          "duration_ms": 5693,
+          "status": "error",
+          "error_message": "api-gateway span returned 429 Too Many Requests to payment-service"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "API gateway rate limiter misconfiguration dropping requests",
+      "affected_service": "api-gateway"
+    }
+  },
+  {
+    "incident_id": "incident-5fbe1436",
+    "index": 18,
+    "generated_at": "2026-08-18T17:28:41.377664+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:29:02.377660+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 11ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:34.377660+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 45ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:38.377660+00:00",
+        "level": "WARN",
+        "service": "cache-service",
+        "message": "WARN cache-service - eviction rate critical: evicted=45000 keys in last 60s"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:44.377660+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=80af806e-767 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:56.377660+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 55ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:30:03.377660+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=d005601a-3e7 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:30:09.377660+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:30:24.377660+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=d995ee71"
+      },
+      {
+        "timestamp": "2026-08-18T16:30:28.377660+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=9cdf8e8e-b2b status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:28:47.377660+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 77,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:49.377660+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 145,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:04.377660+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 114,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:30.377660+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 58,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:29:33.377660+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.eviction_rate",
+        "value": 45000,
+        "threshold": 1000,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "a0d73ba6-b083-423d-8dde-63cf8c7db370",
+      "spans": [
+        {
+          "span_id": "c23b5580",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:29:41.377660+00:00",
+          "duration_ms": 5012,
+          "status": "error"
+        },
+        {
+          "span_id": "4f347de8",
+          "parent_span_id": "c23b5580",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:29:39.377660+00:00",
+          "duration_ms": 28,
+          "status": "ok"
+        },
+        {
+          "span_id": "ea7cb991",
+          "parent_span_id": "c23b5580",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:29:42.377660+00:00",
+          "duration_ms": 39,
+          "status": "ok"
+        },
+        {
+          "span_id": "ae3bc04b",
+          "parent_span_id": "c23b5580",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:29:42.377660+00:00",
+          "duration_ms": 27,
+          "status": "ok"
+        },
+        {
+          "span_id": "67179cca",
+          "parent_span_id": "c23b5580",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:29:40.377660+00:00",
+          "duration_ms": 5536,
+          "status": "error",
+          "error_message": "cache-service span returned MISS for 94% of keys"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Cache service eviction storm under high load",
+      "affected_service": "cache-service"
+    }
+  },
+  {
+    "incident_id": "incident-a6fa1485",
+    "index": 19,
+    "generated_at": "2026-08-18T17:28:41.377760+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:23:43.377756+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:23:48.377756+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=17ea642e"
+      },
+      {
+        "timestamp": "2026-08-18T16:23:59.377756+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:30.377756+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:41.377756+00:00",
+        "level": "WARN",
+        "service": "auth-service",
+        "message": "WARN auth-service - cache miss rate=0.98 falling back to DB"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:43.377756+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 281ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:44.377756+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=521ca949"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:07.377756+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:34.377756+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:24:49.377756+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 74,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:11.377756+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 47,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:25:14.377756+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 97,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:17.377756+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 52,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:24:40.377756+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.cache.hit_rate",
+        "value": 0.02,
+        "threshold": 0.8,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "fb670f45-c010-432f-9808-84ffcb7d181a",
+      "spans": [
+        {
+          "span_id": "87c72308",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:24:41.377756+00:00",
+          "duration_ms": 6353,
+          "status": "error"
+        },
+        {
+          "span_id": "31ac276d",
+          "parent_span_id": "87c72308",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:42.377756+00:00",
+          "duration_ms": 163,
+          "status": "ok"
+        },
+        {
+          "span_id": "1443d533",
+          "parent_span_id": "87c72308",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:39.377756+00:00",
+          "duration_ms": 127,
+          "status": "ok"
+        },
+        {
+          "span_id": "e86640e5",
+          "parent_span_id": "87c72308",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:43.377756+00:00",
+          "duration_ms": 151,
+          "status": "ok"
+        },
+        {
+          "span_id": "f77aa73b",
+          "parent_span_id": "87c72308",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:24:41.377756+00:00",
+          "duration_ms": 5072,
+          "status": "error",
+          "error_message": "auth-service span latency=4200ms (p99 baseline=120ms)"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Auth service latency spike due to expired cache",
+      "affected_service": "auth-service"
+    }
+  },
+  {
+    "incident_id": "incident-7e900162",
+    "index": 20,
+    "generated_at": "2026-08-18T17:28:41.377854+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:09:13.377851+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=62d8e76d-27a status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:22.377851+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - cache hit for key=54d1c6cf"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:27.377851+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 172ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:30.377851+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:38.377851+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:52.377851+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=b2c5aa13-c4d status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:10:04.377851+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=b3508d10-f1d status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:10:32.377851+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 9ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:10:36.377851+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 31ms"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:09:16.377851+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 109,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:10:38.377851+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 141,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:49.377851+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 123,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:53.377851+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 112,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:09:49.377851+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "da2075c8-3d05-4ce7-ba97-625aecf974c6",
+      "spans": [
+        {
+          "span_id": "e2818503",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:09:41.377851+00:00",
+          "duration_ms": 6727,
+          "status": "error"
+        },
+        {
+          "span_id": "1ec9f04c",
+          "parent_span_id": "e2818503",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:09:40.377851+00:00",
+          "duration_ms": 102,
+          "status": "ok"
+        },
+        {
+          "span_id": "c29bd3fd",
+          "parent_span_id": "e2818503",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:09:42.377851+00:00",
+          "duration_ms": 33,
+          "status": "ok"
+        },
+        {
+          "span_id": "2b947304",
+          "parent_span_id": "e2818503",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:09:43.377851+00:00",
+          "duration_ms": 98,
+          "status": "ok"
+        },
+        {
+          "span_id": "8f871923",
+          "parent_span_id": "e2818503",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:09:39.377851+00:00",
+          "duration_ms": 3483,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-31885a73",
+    "index": 21,
+    "generated_at": "2026-08-18T17:28:41.377977+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T17:10:43.377974+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:10:53.377974+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 53ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:10:59.377974+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 171ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:11:06.377974+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - cache hit for key=df27446a"
+      },
+      {
+        "timestamp": "2026-08-18T17:11:30.377974+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=4f3b60f6"
+      },
+      {
+        "timestamp": "2026-08-18T17:11:38.377974+00:00",
+        "level": "WARN",
+        "service": "cache-service",
+        "message": "WARN cache-service - eviction rate critical: evicted=45000 keys in last 60s"
+      },
+      {
+        "timestamp": "2026-08-18T17:12:19.377974+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 162ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:12:29.377974+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=c1254ed5-6ef status=200"
+      },
+      {
+        "timestamp": "2026-08-18T17:12:40.377974+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=435732cc-333 status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T17:11:40.377974+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 24,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:10:46.377974+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 91,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:11:19.377974+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 137,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:10:48.377974+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 34,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:11:45.377974+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.eviction_rate",
+        "value": 45000,
+        "threshold": 1000,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "f563f8a8-5049-4461-8cda-ef4485b5dbfe",
+      "spans": [
+        {
+          "span_id": "f1422451",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T17:11:41.377974+00:00",
+          "duration_ms": 5673,
+          "status": "error"
+        },
+        {
+          "span_id": "e70e3e51",
+          "parent_span_id": "f1422451",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:11:42.377974+00:00",
+          "duration_ms": 127,
+          "status": "ok"
+        },
+        {
+          "span_id": "574fd477",
+          "parent_span_id": "f1422451",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:11:40.377974+00:00",
+          "duration_ms": 152,
+          "status": "ok"
+        },
+        {
+          "span_id": "74dc5d0b",
+          "parent_span_id": "f1422451",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T17:11:41.377974+00:00",
+          "duration_ms": 107,
+          "status": "ok"
+        },
+        {
+          "span_id": "0b29b5a6",
+          "parent_span_id": "f1422451",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:11:42.377974+00:00",
+          "duration_ms": 5153,
+          "status": "error",
+          "error_message": "cache-service span returned MISS for 94% of keys"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Cache service eviction storm under high load",
+      "affected_service": "cache-service"
+    }
+  },
+  {
+    "incident_id": "incident-2f2fff3d",
+    "index": 22,
+    "generated_at": "2026-08-18T17:28:41.378073+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T17:05:47.378069+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 43ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:08.378069+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:11.378069+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:14.378069+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:45.378069+00:00",
+        "level": "ERROR",
+        "service": "db-proxy",
+        "message": "ERROR db-proxy - connection pool exhausted: max_connections=100 active=100"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:49.378069+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:10.378069+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:23.378069+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 201ms"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:34.378069+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 22ms"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T17:06:13.378069+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 33,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:07:09.378069+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 49,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:22.378069+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 145,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:05:43.378069+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 67,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T17:06:33.378069+00:00",
+        "service": "db-proxy",
+        "metric": "db.connection_pool.active",
+        "value": 100,
+        "threshold": 100,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "9e1390db-17fa-428b-9a0a-7c36cd8b2f06",
+      "spans": [
+        {
+          "span_id": "e2a435dc",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T17:06:41.378069+00:00",
+          "duration_ms": 7272,
+          "status": "error"
+        },
+        {
+          "span_id": "dfcd0019",
+          "parent_span_id": "e2a435dc",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:43.378069+00:00",
+          "duration_ms": 172,
+          "status": "ok"
+        },
+        {
+          "span_id": "674afddb",
+          "parent_span_id": "e2a435dc",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:41.378069+00:00",
+          "duration_ms": 146,
+          "status": "ok"
+        },
+        {
+          "span_id": "d75873ca",
+          "parent_span_id": "e2a435dc",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:40.378069+00:00",
+          "duration_ms": 127,
+          "status": "ok"
+        },
+        {
+          "span_id": "9a689bfa",
+          "parent_span_id": "e2a435dc",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T17:06:39.378069+00:00",
+          "duration_ms": 5027,
+          "status": "error",
+          "error_message": "db-proxy span timed out after 30000ms"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Database connection pool exhausted",
+      "affected_service": "db-proxy"
+    }
+  },
+  {
+    "incident_id": "incident-d99f8316",
+    "index": 23,
+    "generated_at": "2026-08-18T17:28:41.378168+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T16:42:23.378164+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - processed request in 67ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:42:30.378164+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:42:33.378164+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - request_id=8344ff51-b1c status=200"
+      },
+      {
+        "timestamp": "2026-08-18T16:42:34.378164+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - cache hit for key=d5948330"
+      },
+      {
+        "timestamp": "2026-08-18T16:42:42.378164+00:00",
+        "level": "WARN",
+        "service": "auth-service",
+        "message": "WARN auth-service - cache miss rate=0.98 falling back to DB"
+      },
+      {
+        "timestamp": "2026-08-18T16:42:56.378164+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - processed request in 294ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:43:11.378164+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T16:43:12.378164+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "DEBUG auth-service - processed request in 272ms"
+      },
+      {
+        "timestamp": "2026-08-18T16:43:40.378164+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=bfe49c84"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T16:43:40.378164+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 75,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:43:06.378164+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 27,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:43:01.378164+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 111,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:43:03.378164+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 32,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T16:42:46.378164+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.cache.hit_rate",
+        "value": 0.02,
+        "threshold": 0.8,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "84710728-35e3-488a-bd5d-d7aa941ba7c4",
+      "spans": [
+        {
+          "span_id": "6769b69a",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T16:42:41.378164+00:00",
+          "duration_ms": 6256,
+          "status": "error"
+        },
+        {
+          "span_id": "fd4eb7a4",
+          "parent_span_id": "6769b69a",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:42:39.378164+00:00",
+          "duration_ms": 119,
+          "status": "ok"
+        },
+        {
+          "span_id": "ec81a40d",
+          "parent_span_id": "6769b69a",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T16:42:41.378164+00:00",
+          "duration_ms": 155,
+          "status": "ok"
+        },
+        {
+          "span_id": "c7a1072b",
+          "parent_span_id": "6769b69a",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:42:41.378164+00:00",
+          "duration_ms": 125,
+          "status": "ok"
+        },
+        {
+          "span_id": "ac7052dd",
+          "parent_span_id": "6769b69a",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T16:42:41.378164+00:00",
+          "duration_ms": 5681,
+          "status": "error",
+          "error_message": "auth-service span latency=4200ms (p99 baseline=120ms)"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Auth service latency spike due to expired cache",
+      "affected_service": "auth-service"
+    }
+  },
+  {
+    "incident_id": "incident-69c80c5b",
+    "index": 24,
+    "generated_at": "2026-08-18T17:28:41.378259+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:45:47.378256+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=65f41566-c51 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:03.378256+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 109ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:15.378256+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "INFO api-gateway - request_id=bca3faad-263 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:31.378256+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "DEBUG cache-service - processed request in 75ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:35.378256+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - health check ok"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:45.378256+00:00",
+        "level": "FATAL",
+        "service": "payment-service",
+        "message": "FATAL payment-service - OutOfMemoryError: Java heap space"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:25.378256+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - cache hit for key=50a153b7"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:31.378256+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - processed request in 149ms"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:36.378256+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - request_id=3382ecfc-4ce status=200"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:45:46.378256+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 46,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:15.378256+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 82,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:47:20.378256+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 90,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:11.378256+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.latency_ms",
+        "value": 103,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:46:51.378256+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.memory.used_mb",
+        "value": 3900,
+        "threshold": 4096,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "7dc05148-d36c-4f98-a863-bf9c483370cb",
+      "spans": [
+        {
+          "span_id": "3b73ec48",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:46:41.378256+00:00",
+          "duration_ms": 7280,
+          "status": "error"
+        },
+        {
+          "span_id": "1d3a14fa",
+          "parent_span_id": "3b73ec48",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:41.378256+00:00",
+          "duration_ms": 31,
+          "status": "ok"
+        },
+        {
+          "span_id": "f377d174",
+          "parent_span_id": "3b73ec48",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:41.378256+00:00",
+          "duration_ms": 46,
+          "status": "ok"
+        },
+        {
+          "span_id": "5c8a5da7",
+          "parent_span_id": "3b73ec48",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:39.378256+00:00",
+          "duration_ms": 196,
+          "status": "ok"
+        },
+        {
+          "span_id": "47e786d4",
+          "parent_span_id": "3b73ec48",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:46:40.378256+00:00",
+          "duration_ms": 3157,
+          "status": "error",
+          "error_message": "payment-service span failed: connection reset by peer"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Memory leak in payment-service causing OOM restarts",
+      "affected_service": "payment-service"
+    }
+  },
+  {
+    "incident_id": "incident-c11d4a8a",
+    "index": 25,
+    "generated_at": "2026-08-18T17:28:41.378349+00:00",
+    "logs": [
+      {
+        "timestamp": "2026-08-18T15:44:01.378345+00:00",
+        "level": "INFO",
+        "service": "auth-service",
+        "message": "INFO auth-service - request_id=54ef2cca-e8d status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:21.378345+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:22.378345+00:00",
+        "level": "INFO",
+        "service": "cache-service",
+        "message": "INFO cache-service - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:36.378345+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "INFO db-proxy - connected to upstream"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:37.378345+00:00",
+        "level": "WARN",
+        "service": "cache-service",
+        "message": "WARN cache-service - eviction rate critical: evicted=45000 keys in last 60s"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:42.378345+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "INFO payment-service - request_id=45246b38-b38 status=200"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:00.378345+00:00",
+        "level": "INFO",
+        "service": "api-gateway",
+        "message": "DEBUG api-gateway - cache hit for key=58b6aebf"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:09.378345+00:00",
+        "level": "INFO",
+        "service": "db-proxy",
+        "message": "DEBUG db-proxy - cache hit for key=17b5260a"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:19.378345+00:00",
+        "level": "INFO",
+        "service": "payment-service",
+        "message": "DEBUG payment-service - cache hit for key=8aef61b9"
+      }
+    ],
+    "metrics": [
+      {
+        "timestamp": "2026-08-18T15:44:10.378345+00:00",
+        "service": "api-gateway",
+        "metric": "api_gateway.latency_ms",
+        "value": 150,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:50.378345+00:00",
+        "service": "auth-service",
+        "metric": "auth_service.latency_ms",
+        "value": 73,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:34.378345+00:00",
+        "service": "payment-service",
+        "metric": "payment_service.latency_ms",
+        "value": 81,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:45:22.378345+00:00",
+        "service": "db-proxy",
+        "metric": "db_proxy.latency_ms",
+        "value": 86,
+        "status": "normal"
+      },
+      {
+        "timestamp": "2026-08-18T15:44:47.378345+00:00",
+        "service": "cache-service",
+        "metric": "cache_service.eviction_rate",
+        "value": 45000,
+        "threshold": 1000,
+        "status": "critical"
+      }
+    ],
+    "trace": {
+      "trace_id": "7e1492bc-edd6-4b50-8878-c1619de86fea",
+      "spans": [
+        {
+          "span_id": "1c15153b",
+          "parent_span_id": null,
+          "service": "api-gateway",
+          "operation": "handle_request",
+          "start_time": "2026-08-18T15:44:41.378345+00:00",
+          "duration_ms": 6203,
+          "status": "error"
+        },
+        {
+          "span_id": "19dac22a",
+          "parent_span_id": "1c15153b",
+          "service": "auth-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:39.378345+00:00",
+          "duration_ms": 48,
+          "status": "ok"
+        },
+        {
+          "span_id": "cf938844",
+          "parent_span_id": "1c15153b",
+          "service": "payment-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:41.378345+00:00",
+          "duration_ms": 52,
+          "status": "ok"
+        },
+        {
+          "span_id": "e65d5a9b",
+          "parent_span_id": "1c15153b",
+          "service": "db-proxy",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:42.378345+00:00",
+          "duration_ms": 127,
+          "status": "ok"
+        },
+        {
+          "span_id": "e4fd2daa",
+          "parent_span_id": "1c15153b",
+          "service": "cache-service",
+          "operation": "process",
+          "start_time": "2026-08-18T15:44:41.378345+00:00",
+          "duration_ms": 3536,
+          "status": "error",
+          "error_message": "cache-service span returned MISS for 94% of keys"
+        }
+      ]
+    },
+    "ground_truth": {
+      "root_cause": "Cache service eviction storm under high load",
+      "affected_service": "cache-service"
+    }
+  }
+]
