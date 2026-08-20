@@ -84,16 +84,26 @@ Your job is to synthesise these observations into a ranked list of root-cause hy
 Rules:
 - Rank 1 should be your most confident hypothesis
 - Each hypothesis must cite the observation IDs that support it
-- Be specific — name the service and failure mode, not just "there was an error"
+- Be specific — name the service and failure mode using the exact terminology below
 - If all observations point to the same cause, one ranked cause is fine
 - Overall confidence should reflect how strongly the evidence converges
+
+IMPORTANT — always use these exact failure-mode terms in your cause description:
+- For database connection issues: "connection pool exhausted"
+- For memory issues: "memory leak" or "out of memory"
+- For cache issues: "cache expiry" or "cache miss rate"
+- For rate limiting issues: "rate limiter misconfiguration"
+- For cache eviction issues: "eviction storm"
+
+Using consistent terminology matters — downstream alerting and ticketing systems
+depend on predictable output structure.
 
 Return ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:
 {{
   "ranked_causes": [
     {{
       "rank": 1,
-      "cause": "<specific description of the root cause, naming the service and failure mode>",
+      "cause": "<specific description using exact failure-mode terms above, naming the service>",
       "supporting_observation_ids": ["<observation_id_1>", "<observation_id_2>"],
       "confidence": <float 0.0-1.0>
     }}

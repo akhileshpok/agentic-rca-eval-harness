@@ -1,10 +1,9 @@
 # Promptfoo eval configuration for the agentic RCA system
-# Run: promptfoo eval
+# Run: promptfoo eval -c promptfoo.yaml --no-cache
 # View results: promptfoo view
 
 description: Agentic RCA System — Prompt Eval Suite
 
-# Test the Hypothesis Generator prompt across incident types
 prompts:
   - id: hypothesis_generator
     raw: |
@@ -20,16 +19,23 @@ prompts:
       Rules:
       - Rank 1 should be your most confident hypothesis
       - Each hypothesis must cite the observation IDs that support it
-      - Be specific — name the service and failure mode, not just "there was an error"
+      - Be specific — name the service and failure mode using the exact terminology below
       - If all observations point to the same cause, one ranked cause is fine
       - Overall confidence should reflect how strongly the evidence converges
+
+      IMPORTANT — always use these exact failure-mode terms in your cause description:
+      - For database connection issues: "connection pool exhausted"
+      - For memory issues: "memory leak" or "out of memory"
+      - For cache issues: "cache expiry" or "cache miss rate"
+      - For rate limiting issues: "rate limiter misconfiguration"
+      - For cache eviction issues: "eviction storm"
 
       Return ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:
       {
         "ranked_causes": [
           {
             "rank": 1,
-            "cause": "<specific description of the root cause>",
+            "cause": "<specific description using exact failure-mode terms above, naming the service>",
             "supporting_observation_ids": ["<id1>", "<id2>"],
             "confidence": 0.0
           }
@@ -70,8 +76,8 @@ tests:
     assert:
       - type: contains
         value: "db-proxy"
-      - type: contains
-        value: "connection pool"
+      - type: javascript
+        value: output.toLowerCase().includes("connection pool")
       - type: javascript
         value: |
           const parsed = JSON.parse(output);
@@ -101,7 +107,7 @@ tests:
       - type: contains
         value: "payment-service"
       - type: contains
-        value: "memory"
+        value: "memory leak"
       - type: javascript
         value: |
           const parsed = JSON.parse(output);

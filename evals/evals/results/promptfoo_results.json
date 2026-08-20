@@ -1,0 +1,1014 @@
+{
+  "evalId": "eval-Wfd-2026-08-20T11:34:55",
+  "results": {
+    "version": 3,
+    "timestamp": "2026-08-20T11:34:55.969Z",
+    "prompts": [
+      {
+        "id": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+        "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+        "provider": "ollama:llama3.1",
+        "metrics": {
+          "score": 3,
+          "testPassCount": 3,
+          "testFailCount": 0,
+          "testErrorCount": 0,
+          "assertPassCount": 9,
+          "assertFailCount": 0,
+          "totalLatencyMs": 39880,
+          "tokenUsage": {
+            "prompt": 1458,
+            "completion": 383,
+            "cached": 0,
+            "total": 1841,
+            "numRequests": 3,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "namedScoreWeights": {},
+          "cost": 0
+        }
+      },
+      {
+        "id": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+        "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+        "provider": "ollama:llama3.2",
+        "metrics": {
+          "score": 3,
+          "testPassCount": 3,
+          "testFailCount": 0,
+          "testErrorCount": 0,
+          "assertPassCount": 9,
+          "assertFailCount": 0,
+          "totalLatencyMs": 12394,
+          "tokenUsage": {
+            "prompt": 1503,
+            "completion": 226,
+            "cached": 0,
+            "total": 1729,
+            "numRequests": 3,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            },
+            "assertions": {
+              "total": 0,
+              "prompt": 0,
+              "completion": 0,
+              "cached": 0,
+              "numRequests": 0,
+              "completionDetails": {
+                "reasoning": 0,
+                "acceptedPrediction": 0,
+                "rejectedPrediction": 0,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0
+              }
+            }
+          },
+          "namedScores": {},
+          "namedScoresCount": {},
+          "namedScoreWeights": {},
+          "cost": 0
+        }
+      }
+    ],
+    "results": [
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "db-proxy"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "output.toLowerCase().includes(\"connection pool\")"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes && parsed.ranked_causes.length > 0;\n"
+              }
+            }
+          ]
+        },
+        "id": "031539e8-e65b-4a31-bb0f-0558be1168bd",
+        "latencyMs": 3152,
+        "namedScores": {},
+        "prompt": {
+          "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\nobservation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "config": {}
+        },
+        "promptId": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "promptIdx": 1,
+        "provider": {
+          "id": "ollama:llama3.2",
+          "label": ""
+        },
+        "response": {
+          "output": "{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"Connection pool exhausted on db-proxy\",\n      \"supporting_observation_ids\": [\"obs-001\", \"obs-002\"],\n      \"confidence\": 0.95\n    }\n  ],\n  \"overall_confidence\": 0.95\n}",
+          "tokenUsage": {
+            "prompt": 493,
+            "completion": 74,
+            "total": 567
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "DB connection pool exhaustion",
+          "vars": {
+            "observations": "observation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "db-proxy"
+            },
+            {
+              "type": "javascript",
+              "value": "output.toLowerCase().includes(\"connection pool\")"
+            },
+            {
+              "type": "javascript",
+              "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes && parsed.ranked_causes.length > 0;\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "tokenUsage": {
+          "prompt": 493,
+          "completion": 74,
+          "cached": 0,
+          "total": 567,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "observations": "observation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "db-proxy"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "output.toLowerCase().includes(\"connection pool\")"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes && parsed.ranked_causes.length > 0;\n"
+              }
+            }
+          ]
+        },
+        "id": "433ef3ce-e59c-4049-b5b5-33f808881079",
+        "latencyMs": 8881,
+        "namedScores": {},
+        "prompt": {
+          "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\nobservation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "config": {}
+        },
+        "promptId": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "promptIdx": 0,
+        "provider": {
+          "id": "ollama:llama3.1",
+          "label": ""
+        },
+        "response": {
+          "output": "{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"db-proxy connection pool exhausted\",\n      \"supporting_observation_ids\": [\"obs-001\", \"obs-002\"],\n      \"confidence\": 0.9\n    },\n    {\n      \"rank\": 2,\n      \"cause\": \"db-proxy span timed out causing request failure\",\n      \"supporting_observation_ids\": [\"obs-003\"],\n      \"confidence\": 0.8\n    }\n  ],\n  \"overall_confidence\": 0.9\n}",
+          "tokenUsage": {
+            "prompt": 478,
+            "completion": 120,
+            "total": 598
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "DB connection pool exhaustion",
+          "vars": {
+            "observations": "observation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "db-proxy"
+            },
+            {
+              "type": "javascript",
+              "value": "output.toLowerCase().includes(\"connection pool\")"
+            },
+            {
+              "type": "javascript",
+              "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes && parsed.ranked_causes.length > 0;\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 0,
+        "tokenUsage": {
+          "prompt": 478,
+          "completion": 120,
+          "cached": 0,
+          "total": 598,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "observations": "observation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "payment-service"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "memory leak"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const parsed = JSON.parse(output);\nreturn parsed.overall_confidence >= 0.7;\n"
+              }
+            }
+          ]
+        },
+        "id": "a0e4bf8a-41da-44cb-a109-9d14fc047a87",
+        "latencyMs": 6145,
+        "namedScores": {},
+        "prompt": {
+          "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\nobservation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "config": {}
+        },
+        "promptId": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "promptIdx": 1,
+        "provider": {
+          "id": "ollama:llama3.2",
+          "label": ""
+        },
+        "response": {
+          "output": "{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"payment-service memory leak causing connection reset\",\n      \"supporting_observation_ids\": [\"obs-004\", \"obs-005\"],\n      \"confidence\": 0.92\n    }\n  ],\n  \"overall_confidence\": 0.92\n}",
+          "tokenUsage": {
+            "prompt": 498,
+            "completion": 75,
+            "total": 573
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "Memory leak OOM",
+          "vars": {
+            "observations": "observation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "payment-service"
+            },
+            {
+              "type": "contains",
+              "value": "memory leak"
+            },
+            {
+              "type": "javascript",
+              "value": "const parsed = JSON.parse(output);\nreturn parsed.overall_confidence >= 0.7;\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "tokenUsage": {
+          "prompt": 498,
+          "completion": 75,
+          "cached": 0,
+          "total": 573,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "observations": "observation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "payment-service"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "memory leak"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const parsed = JSON.parse(output);\nreturn parsed.overall_confidence >= 0.7;\n"
+              }
+            }
+          ]
+        },
+        "id": "3db28f91-5e74-4dea-8f3e-49508877751a",
+        "latencyMs": 14232,
+        "namedScores": {},
+        "prompt": {
+          "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\nobservation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "config": {}
+        },
+        "promptId": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "promptIdx": 0,
+        "provider": {
+          "id": "ollama:llama3.1",
+          "label": ""
+        },
+        "response": {
+          "output": "{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"payment-service memory leak due to excessive memory usage\",\n      \"supporting_observation_ids\": [\"obs-004\", \"obs-005\"],\n      \"confidence\": 0.95\n    },\n    {\n      \"rank\": 2,\n      \"cause\": \"payment-service connection reset due to connection pool exhausted\",\n      \"supporting_observation_ids\": [\"obs-006\"],\n      \"confidence\": 0.85\n    }\n  ],\n  \"overall_confidence\": 0.95\n}",
+          "tokenUsage": {
+            "prompt": 483,
+            "completion": 125,
+            "total": 608
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "Memory leak OOM",
+          "vars": {
+            "observations": "observation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "payment-service"
+            },
+            {
+              "type": "contains",
+              "value": "memory leak"
+            },
+            {
+              "type": "javascript",
+              "value": "const parsed = JSON.parse(output);\nreturn parsed.overall_confidence >= 0.7;\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 1,
+        "tokenUsage": {
+          "prompt": 483,
+          "completion": 125,
+          "cached": 0,
+          "total": 608,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "observations": "observation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "auth-service"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "cache"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes[0].supporting_observation_ids.length > 0;\n"
+              }
+            }
+          ]
+        },
+        "id": "d39d9072-b29d-4bfc-ba3c-f0ae18389f28",
+        "latencyMs": 3097,
+        "namedScores": {},
+        "prompt": {
+          "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\nobservation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "config": {}
+        },
+        "promptId": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "promptIdx": 1,
+        "provider": {
+          "id": "ollama:llama3.2",
+          "label": ""
+        },
+        "response": {
+          "output": "{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"auth-service connection pool exhausted due to cache expiry\",\n      \"supporting_observation_ids\": [\"obs-007\", \"obs-008\"],\n      \"confidence\": 0.92\n    }\n  ],\n  \"overall_confidence\": 0.92\n}",
+          "tokenUsage": {
+            "prompt": 512,
+            "completion": 77,
+            "total": 589
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "Auth cache expiry latency spike",
+          "vars": {
+            "observations": "observation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "auth-service"
+            },
+            {
+              "type": "contains",
+              "value": "cache"
+            },
+            {
+              "type": "javascript",
+              "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes[0].supporting_observation_ids.length > 0;\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 2,
+        "tokenUsage": {
+          "prompt": 512,
+          "completion": 77,
+          "cached": 0,
+          "total": 589,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "observations": "observation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      },
+      {
+        "cost": 0,
+        "gradingResult": {
+          "pass": true,
+          "score": 1,
+          "reason": "All assertions passed",
+          "namedScores": {},
+          "tokensUsed": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 0
+          },
+          "componentResults": [
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "auth-service"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "contains",
+                "value": "cache"
+              }
+            },
+            {
+              "pass": true,
+              "score": 1,
+              "reason": "Assertion passed",
+              "assertion": {
+                "type": "javascript",
+                "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes[0].supporting_observation_ids.length > 0;\n"
+              }
+            }
+          ]
+        },
+        "id": "7a337514-c68b-4afe-a688-797297f4c3ae",
+        "latencyMs": 16767,
+        "namedScores": {},
+        "prompt": {
+          "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\nobservation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "label": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n",
+          "config": {}
+        },
+        "promptId": "6fa194789c5e55e6a815910fbf481e51bd95eee8358bcf6b8ca45b0129454779",
+        "promptIdx": 0,
+        "provider": {
+          "id": "ollama:llama3.1",
+          "label": ""
+        },
+        "response": {
+          "output": "{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"auth-service cache miss rate due to cache expiry\",\n      \"supporting_observation_ids\": [\"obs-007\", \"obs-008\"],\n      \"confidence\": 0.85\n    },\n    {\n      \"rank\": 2,\n      \"cause\": \"auth-service experiencing connection pool exhausted due to high cache miss rate\",\n      \"supporting_observation_ids\": [\"obs-007\", \"obs-008\", \"obs-009\"],\n      \"confidence\": 0.85\n    }\n  ],\n  \"overall_confidence\": 0.85\n}",
+          "tokenUsage": {
+            "prompt": 497,
+            "completion": 138,
+            "total": 635
+          }
+        },
+        "score": 1,
+        "success": true,
+        "testCase": {
+          "description": "Auth cache expiry latency spike",
+          "vars": {
+            "observations": "observation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n"
+          },
+          "assert": [
+            {
+              "type": "contains",
+              "value": "auth-service"
+            },
+            {
+              "type": "contains",
+              "value": "cache"
+            },
+            {
+              "type": "javascript",
+              "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes[0].supporting_observation_ids.length > 0;\n"
+            }
+          ],
+          "options": {},
+          "metadata": {}
+        },
+        "testIdx": 2,
+        "tokenUsage": {
+          "prompt": 497,
+          "completion": 138,
+          "cached": 0,
+          "total": 635,
+          "numRequests": 1,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          },
+          "assertions": {
+            "total": 0,
+            "prompt": 0,
+            "completion": 0,
+            "cached": 0,
+            "numRequests": 1,
+            "completionDetails": {
+              "reasoning": 0,
+              "acceptedPrediction": 0,
+              "rejectedPrediction": 0,
+              "cacheReadInputTokens": 0,
+              "cacheCreationInputTokens": 0
+            }
+          }
+        },
+        "vars": {
+          "observations": "observation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n"
+        },
+        "metadata": {
+          "_promptfooFileMetadata": {}
+        },
+        "failureReason": 0
+      }
+    ],
+    "stats": {
+      "successes": 6,
+      "failures": 0,
+      "errors": 0,
+      "tokenUsage": {
+        "prompt": 2961,
+        "completion": 609,
+        "cached": 0,
+        "total": 3570,
+        "numRequests": 6,
+        "completionDetails": {
+          "reasoning": 0,
+          "acceptedPrediction": 0,
+          "rejectedPrediction": 0,
+          "cacheReadInputTokens": 0,
+          "cacheCreationInputTokens": 0
+        },
+        "assertions": {
+          "total": 0,
+          "prompt": 0,
+          "completion": 0,
+          "cached": 0,
+          "numRequests": 0,
+          "completionDetails": {
+            "reasoning": 0,
+            "acceptedPrediction": 0,
+            "rejectedPrediction": 0,
+            "cacheReadInputTokens": 0,
+            "cacheCreationInputTokens": 0
+          }
+        }
+      },
+      "durationMs": 19951,
+      "evaluationDurationMs": 19951
+    }
+  },
+  "config": {
+    "tags": {},
+    "description": "Agentic RCA System — Prompt Eval Suite",
+    "prompts": [
+      {
+        "id": "hypothesis_generator",
+        "raw": "You are a senior site reliability engineer synthesising findings from\nmultiple specialist agents to identify the root cause of a production incident.\n\nYou have received the following observations, each from a different evidence source:\n\n{{observations}}\n\nYour job is to synthesise these observations into a ranked list of root-cause hypotheses.\n\nRules:\n- Rank 1 should be your most confident hypothesis\n- Each hypothesis must cite the observation IDs that support it\n- Be specific — name the service and failure mode using the exact terminology below\n- If all observations point to the same cause, one ranked cause is fine\n- Overall confidence should reflect how strongly the evidence converges\n\nIMPORTANT — always use these exact failure-mode terms in your cause description:\n- For database connection issues: \"connection pool exhausted\"\n- For memory issues: \"memory leak\" or \"out of memory\"\n- For cache issues: \"cache expiry\" or \"cache miss rate\"\n- For rate limiting issues: \"rate limiter misconfiguration\"\n- For cache eviction issues: \"eviction storm\"\n\nReturn ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:\n{\n  \"ranked_causes\": [\n    {\n      \"rank\": 1,\n      \"cause\": \"<specific description using exact failure-mode terms above, naming the service>\",\n      \"supporting_observation_ids\": [\"<id1>\", \"<id2>\"],\n      \"confidence\": 0.0\n    }\n  ],\n  \"overall_confidence\": 0.0\n}\n"
+      }
+    ],
+    "providers": [
+      {
+        "id": "ollama:llama3.1",
+        "config": {
+          "temperature": 0
+        }
+      },
+      {
+        "id": "ollama:llama3.2",
+        "config": {
+          "temperature": 0
+        }
+      }
+    ],
+    "tests": [
+      {
+        "description": "DB connection pool exhaustion",
+        "vars": {
+          "observations": "observation_id=obs-001\n  source=log_reader\n  summary=Connection pool exhausted on db-proxy\n  evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100\n  confidence=0.90\n\nobservation_id=obs-002\n  source=metrics_analyst\n  summary=db.connection_pool.active at max threshold\n  evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy\n  confidence=0.90\n\nobservation_id=obs-003\n  source=trace_inspector\n  summary=db-proxy span timed out causing request failure\n  evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error=\"db-proxy span timed out after 30000ms\"\n  confidence=0.80\n"
+        },
+        "assert": [
+          {
+            "type": "contains",
+            "value": "db-proxy"
+          },
+          {
+            "type": "javascript",
+            "value": "output.toLowerCase().includes(\"connection pool\")"
+          },
+          {
+            "type": "javascript",
+            "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes && parsed.ranked_causes.length > 0;\n"
+          }
+        ]
+      },
+      {
+        "description": "Memory leak OOM",
+        "vars": {
+          "observations": "observation_id=obs-004\n  source=log_reader\n  summary=OutOfMemoryError in payment-service causing restarts\n  evidence=FATAL payment-service - OutOfMemoryError: Java heap space\n  confidence=0.95\n\nobservation_id=obs-005\n  source=metrics_analyst\n  summary=payment-service memory usage near limit\n  evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service\n  confidence=0.90\n\nobservation_id=obs-006\n  source=trace_inspector\n  summary=payment-service span failed with connection reset\n  evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error=\"payment-service span failed: connection reset by peer\"\n  confidence=0.85\n"
+        },
+        "assert": [
+          {
+            "type": "contains",
+            "value": "payment-service"
+          },
+          {
+            "type": "contains",
+            "value": "memory leak"
+          },
+          {
+            "type": "javascript",
+            "value": "const parsed = JSON.parse(output);\nreturn parsed.overall_confidence >= 0.7;\n"
+          }
+        ]
+      },
+      {
+        "description": "Auth cache expiry latency spike",
+        "vars": {
+          "observations": "observation_id=obs-007\n  source=log_reader\n  summary=Auth service cache miss rate critical, falling back to DB\n  evidence=WARN auth-service - cache miss rate=0.98 falling back to DB\n  confidence=0.85\n\nobservation_id=obs-008\n  source=metrics_analyst\n  summary=auth-service cache hit rate critically low\n  evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service\n  confidence=0.90\n\nobservation_id=obs-009\n  source=trace_inspector\n  summary=auth-service span latency far above baseline\n  evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error=\"auth-service span latency=4200ms (p99 baseline=120ms)\"\n  confidence=0.85\n"
+        },
+        "assert": [
+          {
+            "type": "contains",
+            "value": "auth-service"
+          },
+          {
+            "type": "contains",
+            "value": "cache"
+          },
+          {
+            "type": "javascript",
+            "value": "const parsed = JSON.parse(output);\nreturn parsed.ranked_causes[0].supporting_observation_ids.length > 0;\n"
+          }
+        ]
+      }
+    ],
+    "env": {},
+    "outputPath": [
+      "evals/results/promptfoo_results.json"
+    ],
+    "extensions": [],
+    "metadata": {},
+    "evaluateOptions": {}
+  },
+  "shareableUrl": null,
+  "metadata": {
+    "promptfooVersion": "0.122.0",
+    "nodeVersion": "v26.7.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "exportedAt": "2026-08-20T11:35:16.100Z",
+    "evaluationCreatedAt": "2026-08-20T11:34:55.969Z"
+  },
+  "vars": [
+    "observations"
+  ],
+  "runtimeOptions": {
+    "eventSource": "cli",
+    "showProgressBar": true,
+    "repeat": 1,
+    "maxConcurrency": 4,
+    "cache": false
+  }
+}
