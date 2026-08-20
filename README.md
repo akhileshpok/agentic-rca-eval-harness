@@ -76,14 +76,16 @@ A two-tier evaluation design, mirroring how you'd need to evaluate this in produ
 **Metrics:**
 | Metric | Tier | Tooling |
 |---|---|---|
-| Correctness (vs. labeled ground truth) | Both | Ragas |
-| Groundedness (is the hypothesis supported by cited evidence?) | End-to-end | Ragas + custom LLM-judge |
-| Hallucination rate | Both | Ragas |
-| Latency / cost per incident | End-to-end | Custom instrumentation |
+| Correctness (vs. labeled ground truth) | Both | Custom scorer |
+| Groundedness (is the hypothesis supported by cited evidence?) | End-to-end | Custom LLM-judge |
+| LLM-as-judge quality score | End-to-end | llama3.2 via Ollama |
+| Prompt regression across models | End-to-end | Promptfoo |
 
-**Eval set:** 20–30 synthetic, labeled incidents (log/metric/trace triples with a known ground-truth root cause).
+**Eval set:** 25 synthetic, labeled incidents (log/metric/trace triples with a known ground-truth root cause) across 5 root cause types: connection pool exhaustion, memory leak, cache expiry, rate limiter misconfiguration, and cache eviction storm.
 
-**LLM-as-judge:** Runs on a local model via [Ollama](https://ollama.com) to keep the project fully reproducible at zero API cost; optionally swappable for a hosted model.
+**LLM-as-judge:** Runs on llama3.2 locally via [Ollama](https://ollama.com) — chosen for its speed on a simple scoring task, keeping the eval layer fully reproducible at zero API cost.
+
+**Model split:** llama3.1 (8B) runs the agents (complex multi-signal reasoning); llama3.2 (3B) runs the judge (simpler rubric scoring). This is a deliberate latency/quality tiering decision backed by Promptfoo eval data.
 
 **CI:** GitHub Actions runs the eval suite on every commit; results are tracked over time so prompt/architecture changes can be compared against a baseline.
 
@@ -99,13 +101,55 @@ Traces are viewed in **[Arize Phoenix](https://github.com/Arize-ai/phoenix)** (s
 
 ## Results
 
-*[To be populated once eval runs are complete — will include: eval score trend chart across prompt/architecture iterations, example trace screenshot paired with its eval score, and a before/after comparison table.]*
+### End-to-End Eval (25 incidents, 5 root cause types)
+
+| Metric | Score | Notes |
+|---|---|---|
+| Correctness | 0.94 | Keyword match vs labeled ground truth |
+| Groundedness | 1.00 | All hypotheses cited real observation IDs — no hallucinated evidence |
+| LLM-as-judge | 0.56 | llama3.2 scoring hypothesis quality on a rubric |
+| Avg confidence | 0.97 | Agent self-reported confidence |
+| Error rate | 0.00 | Pipeline ran without failures across all 25 incidents |
+
+**Key finding:** The gap between correctness (0.94) and judge score (0.56) reflects hypothesis *quality* vs *accuracy* — the pipeline identifies the right root cause most of the time, but hypothesis phrasing is inconsistent. This gap motivated the prompt vocabulary improvement below.
+
+**Overconfidence signal:** High agent confidence (0.97) paired with a middling judge score (0.56) suggests the agents are overconfident relative to actual output quality — a known failure mode in LLM systems worth monitoring in production.
+
+---
+
+### Promptfoo Prompt Iteration (llama3.1 vs llama3.2)
+
+| Iteration | Change | Pass Rate |
+|---|---|---|
+| v1 | Original prompt, case-sensitive assertions | 66.67% |
+| v2 | Added failure-mode vocabulary rules to prompt | 83.33% |
+| v3 | Fixed case-insensitive assertions + vocabulary rules | 100% |
+
+**What Promptfoo surfaced:** Inconsistent hypothesis terminology across models — "heap exhaustion" vs "memory leak", "cache miss" vs "cache expiry". Rather than relaxing eval assertions, the prompt was tightened to enforce consistent vocabulary. Downstream alerting systems depend on predictable output structure, making this a product decision, not just an engineering one.
+
+*Trace screenshots and per-agent component scores to be added in Week 3.*
 
 ---
 
 ## Design Decisions & Tradeoffs
 
-*[To be populated: why single-purpose sub-agents over one monolithic agent; why Pydantic-typed state over free-text handoffs; why a two-tier eval design; local vs. hosted judge model tradeoffs; what was cut from scope and why.]*
+**Single-purpose sub-agents over one monolithic agent**
+Each sub-agent has one job (read logs, analyse metrics, inspect traces) and emits a typed `Observation`. This makes each agent independently testable — Tier 1 evals can score each agent in isolation without running the full pipeline. A monolithic agent would conflate all three evidence sources, making it impossible to diagnose which part of the reasoning failed.
+
+**Pydantic-typed state over free-text handoffs**
+Agents pass structured `Observation` and `Hypothesis` models between each other, not natural language strings. This is what makes the eval layer possible — every field (evidence, confidence, observation ID) is machine-checkable programmatically. Free-text handoffs would require LLM parsing at every step, adding latency and failure modes.
+
+**Two-tier eval design**
+Component evals (Tier 1) catch sub-agent failures early — if the Log Reader misidentifies the signal, the end-to-end score will suffer but you won't know why without component scores. End-to-end evals (Tier 2) catch orchestration failures that only emerge when agents are combined. Running both is more expensive but gives actionable signal on where to improve.
+
+**llama3.1 for agents, llama3.2 as judge**
+Hypothesis generation requires complex multi-signal reasoning across logs, metrics, and traces — llama3.1 (8B) handles this better. Judging is a simpler rubric-scoring task where llama3.2 (3B) is sufficient and faster. This tiering was validated by Promptfoo eval data showing llama3.1 outperformed llama3.2 on vocabulary adherence and hypothesis quality.
+
+**Defensive JSON parsing**
+Smaller local models (llama3.2) occasionally truncate JSON responses, omitting the closing `}`. All agents patch this by appending `}` if missing before parsing. This is a real production concern when running open-weight models locally — noted here as a known limitation rather than silently swallowed.
+
+**Promptfoo assertions use `.toLowerCase()` not `contains`**
+Promptfoo's `contains` assertion is case-sensitive by default. LLMs capitalise terms inconsistently ("Connection pool" vs "connection pool"). Using JavaScript assertions with `.toLowerCase()` makes evals robust to capitalisation variance without weakening what's being tested.
 
 ---
 
@@ -114,16 +158,33 @@ Traces are viewed in **[Arize Phoenix](https://github.com/Arize-ai/phoenix)** (s
 ```bash
 git clone https://github.com/<your-username>/agentic-rca-eval-harness.git
 cd agentic-rca-eval-harness
+
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 
-# Run the agent on a sample incident
-python run_agent.py --incident data/sample_incident_01.json
+# Install Ollama and pull models
+brew install ollama
+brew services start ollama
+ollama pull llama3.1
+ollama pull llama3.2
 
-# Run the eval suite
-promptfoo eval
+# Copy and configure environment variables
+cp .env.example .env
+# Edit .env and set LLM_PROVIDER, model names, and optionally ANTHROPIC_API_KEY
 
-# View traces
-docker compose up phoenix
+# Generate synthetic incident dataset
+python generate_incidents.py --count 25 --output data/incidents.json
+
+# Run the orchestrator on the first two incidents
+python orchestrator.py
+
+# Run the full eval suite
+python evals/run_evals.py --incidents data/incidents.json
+
+# Run Promptfoo prompt regression tests
+cd evals && promptfoo eval -c promptfoo.yaml
 ```
 
 *Full setup instructions in [`docs/SETUP.md`](docs/SETUP.md).*
@@ -133,22 +194,33 @@ docker compose up phoenix
 ## Project Structure
 
 ```
-├── agents/              # Orchestrator + sub-agent implementations
-├── schemas/             # Pydantic models (Observation, Hypothesis, TriageState)
-├── data/                # Synthetic incident dataset + labels
-├── evals/               # Ragas/Promptfoo configs, LLM-judge prompts
-├── observability/        # OTel instrumentation, Phoenix/docker setup
-├── docs/                 # Design doc, setup guide
-└── .github/workflows/    # CI eval pipeline
+├── agents/                  # Sub-agent implementations
+│   ├── log_reader.py        # Parses log lines → Observation
+│   ├── metrics_analyst.py   # Analyses metrics → Observation
+│   ├── trace_inspector.py   # Walks traces → Observation
+│   └── hypothesis_generator.py  # Combines observations → Hypothesis
+├── schemas/
+│   └── state.py             # Pydantic models (Observation, Hypothesis, TriageState)
+├── data/
+│   └── incidents.json       # 25 synthetic labeled incidents
+├── evals/
+│   ├── run_evals.py         # Two-tier eval runner
+│   ├── promptfoo.yaml       # Promptfoo prompt regression config
+│   └── results/             # Eval output (gitignored, regenerated on each run)
+├── observability/           # OTel instrumentation, Phoenix/Docker setup (Week 3)
+├── docs/                    # Design doc, setup guide
+├── orchestrator.py          # LangGraph orchestrator
+├── generate_incidents.py    # Synthetic incident generator
+└── .github/workflows/       # CI eval pipeline
 ```
 
 ---
 
 ## Roadmap
 
-- [ ] Week 1: Orchestrator + sub-agent architecture
-- [ ] Week 2: Eval layer (component + end-to-end)
-- [ ] Week 3: Observability integration + design doc
+- [x] Week 1: Orchestrator + sub-agent architecture
+- [x] Week 2: Eval layer (component + end-to-end) + Promptfoo prompt regression
+- [ ] Week 3: Observability — OTel instrumentation + Arize Phoenix trace viewer
 
 ---
 
