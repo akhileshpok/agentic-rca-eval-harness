@@ -1,0 +1,140 @@
+# Promptfoo eval configuration for the agentic RCA system
+# Run: promptfoo eval
+# View results: promptfoo view
+
+description: Agentic RCA System — Prompt Eval Suite
+
+# Test the Hypothesis Generator prompt across incident types
+prompts:
+  - id: hypothesis_generator
+    raw: |
+      You are a senior site reliability engineer synthesising findings from
+      multiple specialist agents to identify the root cause of a production incident.
+
+      You have received the following observations, each from a different evidence source:
+
+      {{observations}}
+
+      Your job is to synthesise these observations into a ranked list of root-cause hypotheses.
+
+      Rules:
+      - Rank 1 should be your most confident hypothesis
+      - Each hypothesis must cite the observation IDs that support it
+      - Be specific — name the service and failure mode, not just "there was an error"
+      - If all observations point to the same cause, one ranked cause is fine
+      - Overall confidence should reflect how strongly the evidence converges
+
+      Return ONLY a JSON object with exactly these fields — no preamble, no explanation, no markdown:
+      {
+        "ranked_causes": [
+          {
+            "rank": 1,
+            "cause": "<specific description of the root cause>",
+            "supporting_observation_ids": ["<id1>", "<id2>"],
+            "confidence": 0.0
+          }
+        ],
+        "overall_confidence": 0.0
+      }
+
+providers:
+  - id: ollama:llama3.1
+    config:
+      temperature: 0.0
+
+  - id: ollama:llama3.2
+    config:
+      temperature: 0.0
+
+tests:
+  - description: DB connection pool exhaustion
+    vars:
+      observations: |
+        observation_id=obs-001
+          source=log_reader
+          summary=Connection pool exhausted on db-proxy
+          evidence=ERROR db-proxy - connection pool exhausted: max_connections=100 active=100
+          confidence=0.90
+
+        observation_id=obs-002
+          source=metrics_analyst
+          summary=db.connection_pool.active at max threshold
+          evidence=metric=db.connection_pool.active value=100 threshold=100 service=db-proxy
+          confidence=0.90
+
+        observation_id=obs-003
+          source=trace_inspector
+          summary=db-proxy span timed out causing request failure
+          evidence=span_id=abc123 service=db-proxy operation=process duration_ms=3480 status=error error="db-proxy span timed out after 30000ms"
+          confidence=0.80
+    assert:
+      - type: contains
+        value: "db-proxy"
+      - type: contains
+        value: "connection pool"
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          return parsed.ranked_causes && parsed.ranked_causes.length > 0;
+
+  - description: Memory leak OOM
+    vars:
+      observations: |
+        observation_id=obs-004
+          source=log_reader
+          summary=OutOfMemoryError in payment-service causing restarts
+          evidence=FATAL payment-service - OutOfMemoryError: Java heap space
+          confidence=0.95
+
+        observation_id=obs-005
+          source=metrics_analyst
+          summary=payment-service memory usage near limit
+          evidence=metric=payment_service.memory.used_mb value=3900 threshold=4096 service=payment-service
+          confidence=0.90
+
+        observation_id=obs-006
+          source=trace_inspector
+          summary=payment-service span failed with connection reset
+          evidence=span_id=def456 service=payment-service operation=process duration_ms=5200 status=error error="payment-service span failed: connection reset by peer"
+          confidence=0.85
+    assert:
+      - type: contains
+        value: "payment-service"
+      - type: contains
+        value: "memory"
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          return parsed.overall_confidence >= 0.7;
+
+  - description: Auth cache expiry latency spike
+    vars:
+      observations: |
+        observation_id=obs-007
+          source=log_reader
+          summary=Auth service cache miss rate critical, falling back to DB
+          evidence=WARN auth-service - cache miss rate=0.98 falling back to DB
+          confidence=0.85
+
+        observation_id=obs-008
+          source=metrics_analyst
+          summary=auth-service cache hit rate critically low
+          evidence=metric=auth_service.cache.hit_rate value=0.02 threshold=0.80 service=auth-service
+          confidence=0.90
+
+        observation_id=obs-009
+          source=trace_inspector
+          summary=auth-service span latency far above baseline
+          evidence=span_id=ghi789 service=auth-service operation=process duration_ms=4200 status=error error="auth-service span latency=4200ms (p99 baseline=120ms)"
+          confidence=0.85
+    assert:
+      - type: contains
+        value: "auth-service"
+      - type: contains
+        value: "cache"
+      - type: javascript
+        value: |
+          const parsed = JSON.parse(output);
+          return parsed.ranked_causes[0].supporting_observation_ids.length > 0;
+
+outputPath: evals/results/promptfoo_results.json
