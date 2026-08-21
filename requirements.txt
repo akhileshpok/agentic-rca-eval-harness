@@ -15,6 +15,8 @@ anthropic>=0.30.0
 ollama>=0.3.0
 
 # Observability
+arize-phoenix-otel==0.17.1
+openinference-semantic-conventions==0.1.32
 opentelemetry-api>=1.27.0
 opentelemetry-sdk>=1.27.0
 opentelemetry-exporter-otlp>=1.27.0
