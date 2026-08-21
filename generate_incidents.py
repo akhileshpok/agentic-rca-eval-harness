@@ -60,6 +60,41 @@ ROOT_CAUSES = [
         "metric_signal": {"metric": "cache_service.eviction_rate", "value": 45000, "threshold": 1000},
         "trace_signal": "cache-service span returned MISS for 94% of keys",
     },
+        {
+        "cause": "Network packet loss causing service timeouts",
+        "service": "api-gateway",
+        "log_signal": "ERROR api-gateway - upstream timeout: packet loss detected on network interface eth0",
+        "metric_signal": {"metric": "api_gateway.network.packet_loss_rate", "value": 0.18, "threshold": 0.01},
+        "trace_signal": "api-gateway span retried 3 times before failing: network unreachable",
+    },
+    {
+        "cause": "Disk I/O saturation on database host",
+        "service": "db-proxy",
+        "log_signal": "ERROR db-proxy - disk I/O wait critical: iowait=94% read_latency=4200ms",
+        "metric_signal": {"metric": "db_proxy.disk.iowait_percent", "value": 94, "threshold": 20},
+        "trace_signal": "db-proxy span blocked on disk read for 8200ms before timeout",
+    },
+    {
+        "cause": "TLS certificate expiry causing auth failures",
+        "service": "auth-service",
+        "log_signal": "ERROR auth-service - TLS handshake failed: certificate expired 2 days ago",
+        "metric_signal": {"metric": "auth_service.tls.handshake_failure_rate", "value": 0.91, "threshold": 0.01},
+        "trace_signal": "auth-service span failed: SSL: CERTIFICATE_VERIFY_FAILED",
+    },
+    {
+        "cause": "Thread pool exhaustion in payment-service under load",
+        "service": "payment-service",
+        "log_signal": "ERROR payment-service - thread pool exhausted: active_threads=200 max_threads=200 queue_depth=4500",
+        "metric_signal": {"metric": "payment_service.thread_pool.queue_depth", "value": 4500, "threshold": 100},
+        "trace_signal": "payment-service span queued for 12000ms waiting for available thread",
+    },
+    {
+        "cause": "DNS resolution failures causing intermittent connectivity",
+        "service": "cache-service",
+        "log_signal": "ERROR cache-service - DNS resolution failed: Temporary failure in name resolution for upstream-db.internal",
+        "metric_signal": {"metric": "cache_service.dns.resolution_failure_rate", "value": 0.43, "threshold": 0.01},
+        "trace_signal": "cache-service span failed: getaddrinfo ENOTFOUND upstream-db.internal",
+    },
 ]
 
 LOG_NOISE_TEMPLATES = [
@@ -211,7 +246,7 @@ def main():
         json.dump(incidents, f, indent=2)
 
     print(f"Generated {args.count} incidents -> {args.output}")
-    print(f"Root causes represented: {len(set(i['ground_truth']['root_cause'] for i in incidents))}/5")
+    print(f"Root causes represented: {len(set(i['ground_truth']['root_cause'] for i in incidents))}/{len(ROOT_CAUSES)}")
 
 
 if __name__ == "__main__":

@@ -94,6 +94,11 @@ IMPORTANT — always use these exact failure-mode terms in your cause descriptio
 - For cache issues: "cache expiry" or "cache miss rate"
 - For rate limiting issues: "rate limiter misconfiguration"
 - For cache eviction issues: "eviction storm"
+- For network issues: "network packet loss"
+- For disk issues: "disk I/O saturation"
+- For TLS issues: "TLS certificate expiry"
+- For thread pool issues: "thread pool exhausted"
+- For DNS issues: "DNS resolution failures"
 
 Using consistent terminology matters — downstream alerting and ticketing systems
 depend on predictable output structure.
