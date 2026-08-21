@@ -39,6 +39,11 @@ from orchestrator import run_triage
 from schemas.state import AgentSource, Observation, TriageState
 
 load_dotenv()
+from phoenix.otel import register
+register(
+    project_name="agentic-rca-system",
+    endpoint="http://localhost:6006/v1/traces",
+)
 
 RESULTS_DIR = Path(__file__).parent / "results"
 
@@ -68,9 +73,11 @@ Return ONLY a JSON object with exactly these fields — no preamble, no markdown
 }}
 """
 
-def llm_judge_score(hypothesis: str, ground_truth: str) -> dict:
+def llm_judge_score(hypothesis: str, ground_truth: str, incident_id: str = "unknown") -> dict:
     """Run the LLM-as-judge and return a score + reasoning."""
     import requests
+    from opentelemetry import trace as otel_trace
+
     base_url = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
     judge_model = os.getenv("JUDGE_MODEL", "llama3.2")
 
@@ -79,24 +86,35 @@ def llm_judge_score(hypothesis: str, ground_truth: str) -> dict:
         hypothesis=hypothesis,
     )
 
-    response = requests.post(
-        f"{base_url}/api/generate",
-        json={"model": judge_model, "prompt": prompt, "stream": False},
-    )
-    response.raise_for_status()
-    raw = response.json()["response"].strip()
+    tracer = otel_trace.get_tracer("agentic-rca")
 
-    try:
-        if not raw.endswith("}"):
-            raw = raw + "}"
-        parsed = json.loads(raw)
-        return {
-            "judge_score": float(parsed["score"]),
-            "judge_reasoning": parsed.get("reasoning", ""),
-        }
-    except (json.JSONDecodeError, KeyError):
-        return {"judge_score": 0.0, "judge_reasoning": "Failed to parse judge response"}
+    with tracer.start_as_current_span("llm_judge") as span:
+        span.set_attribute("rca.agent.name", "llm_judge")
+        span.set_attribute("rca.incident.id", incident_id)
+        span.set_attribute("gen_ai.request.model", judge_model)
+        span.set_attribute("gen_ai.system", "ollama")
+        span.set_attribute("rca.judge.hypothesis", hypothesis)
+        span.set_attribute("rca.judge.ground_truth", ground_truth)
 
+        response = requests.post(
+            f"{base_url}/api/generate",
+            json={"model": judge_model, "prompt": prompt, "stream": False},
+        )
+        response.raise_for_status()
+        raw = response.json()["response"].strip()
+
+        try:
+            if not raw.endswith("}"):
+                raw = raw + "}"
+            parsed = json.loads(raw)
+            score = float(parsed["score"])
+            reasoning = parsed.get("reasoning", "")
+            span.set_attribute("rca.judge.score", score)
+            span.set_attribute("rca.judge.reasoning", reasoning)
+            return {"judge_score": score, "judge_reasoning": reasoning}
+        except (json.JSONDecodeError, KeyError):
+            span.set_status(otel_trace.StatusCode.ERROR, "Failed to parse judge response")
+            return {"judge_score": 0.0, "judge_reasoning": "Failed to parse judge response"}
 
 # ---------------------------------------------------------------------------
 # Groundedness check
@@ -238,7 +256,7 @@ def run_e2e_eval(incidents: list) -> list:
             # Score
             correctness = check_correctness(top_cause, ground_truth)
             groundedness = check_groundedness(hypothesis, triage)
-            judge = llm_judge_score(top_cause, ground_truth)
+            judge = llm_judge_score(top_cause, ground_truth, incident_id)
 
             results.append({
                 "incident_id": incident_id,
