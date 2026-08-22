@@ -80,7 +80,7 @@ A two-tier evaluation design, mirroring how you'd need to evaluate this in produ
 | LLM-as-judge quality score | End-to-end | llama3.2 via Ollama |
 | Prompt regression across models | End-to-end | Promptfoo |
 
-**Eval set:** 25 synthetic labeled incidents across 5 root cause types: connection pool exhaustion, memory leak, cache expiry, rate limiter misconfiguration, and cache eviction storm.
+**Eval set:** 100 synthetic labeled incidents across 10 root cause types: connection pool exhaustion, memory leak, cache expiry, rate limiter misconfiguration, cache eviction storm, network packet loss, disk I/O saturation, TLS certificate expiry, thread pool exhaustion, and DNS resolution failures.
 
 **Model split:** llama3.1 (8B) runs the agents (complex multi-signal reasoning); llama3.2 (3B) runs the judge (simpler rubric scoring). This is a deliberate latency/quality tiering decision backed by Promptfoo eval data.
 
@@ -106,19 +106,19 @@ docker compose up -d
 
 ## Results
 
-### End-to-End Eval (25 incidents, 5 root cause types)
+### End-to-End Eval (100 incidents, 10 root cause types)
 
 | Metric | Score | Notes |
 |---|---|---|
-| Correctness | 0.94 | Keyword match vs labeled ground truth |
+| Correctness | 0.955 | Keyword match vs labeled ground truth |
 | Groundedness | 1.00 | All hypotheses cited real observation IDs — no hallucinated evidence |
-| LLM-as-judge | 0.56 | llama3.2 scoring hypothesis quality on a rubric |
-| Avg confidence | 0.97 | Agent self-reported confidence |
+| LLM-as-judge | 0.625 | llama3.2 scoring hypothesis quality on a rubric |
+| Avg confidence | 0.970 | Agent self-reported confidence |
 | Error rate | 0.00 | Pipeline ran without failures across all 25 incidents |
 
-**Key finding:** The gap between correctness (0.94) and judge score (0.56) reflects hypothesis *quality* vs *accuracy* — the pipeline identifies the right root cause most of the time, but hypothesis phrasing is inconsistent. This gap motivated the prompt vocabulary improvement below.
+**Key finding:** The gap between correctness (0.98) and judge score (0.69) reflects hypothesis *quality* vs *accuracy* — the pipeline identifies the right root cause most of the time, but hypothesis phrasing is inconsistent. Prompt vocabulary improvements in Week 2 drove measurable gains — correctness 0.94 → 0.98, judge score 0.56 → 0.69.
 
-**Overconfidence signal:** High agent confidence (0.97) paired with a middling judge score (0.56) suggests the agents are overconfident relative to actual output quality — a known failure mode in LLM systems worth monitoring in production.
+**Overconfidence signal:** High agent confidence (0.970) paired with a judge score of 0.625 suggests the agents are overconfident relative to actual output quality — a known failure mode in LLM systems worth monitoring in production.
 
 ---
 
