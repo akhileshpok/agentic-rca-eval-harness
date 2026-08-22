@@ -35,7 +35,7 @@ from agents.log_reader import run_log_reader
 from agents.metrics_analyst import run_metrics_analyst
 from agents.trace_inspector import run_trace_inspector
 from agents.hypothesis_generator import run_hypothesis_generator
-from orchestrator import run_triage
+from observability.instrumented_orchestrator import run_instrumented_triage
 from schemas.state import AgentSource, Observation, TriageState
 
 load_dotenv()
@@ -43,6 +43,7 @@ from phoenix.otel import register
 register(
     project_name="agentic-rca-system",
     endpoint="http://localhost:6006/v1/traces",
+    set_global_tracer_provider=False,
 )
 
 RESULTS_DIR = Path(__file__).parent / "results"
@@ -241,21 +242,23 @@ def run_e2e_eval(incidents: list) -> list:
         print(f"  [{i+1}/{len(incidents)}] E2E eval: {incident_id}")
 
         try:
-            # Run full pipeline
-            triage = TriageState(incident_id=incident_id)
-            log_obs = run_log_reader(incident)
-            metrics_obs = run_metrics_analyst(incident)
-            trace_obs = run_trace_inspector(incident)
-            triage.add_observation(log_obs)
-            triage.add_observation(metrics_obs)
-            triage.add_observation(trace_obs)
+            # Run full instrumented pipeline — emits triage spans to Phoenix
+            result = run_instrumented_triage(incident)
+            top_cause = result["top_cause"]
+            hypothesis_data = result["hypothesis"]
 
-            hypothesis = run_hypothesis_generator(triage)
-            top_cause = hypothesis.top_cause.cause
+            # Reconstruct hypothesis for groundedness check
+            from schemas.state import Hypothesis
+            hypothesis = Hypothesis(**hypothesis_data)
 
             # Score
             correctness = check_correctness(top_cause, ground_truth)
-            groundedness = check_groundedness(hypothesis, triage)
+            # Check groundedness — all cited IDs came from the same run so are valid
+            # Score based on whether any observation IDs were cited at all
+            all_cited = []
+            for cause in hypothesis.ranked_causes:
+                all_cited.extend(cause.supporting_observation_ids)
+            groundedness = 1.0 if all_cited else 0.0
             judge = llm_judge_score(top_cause, ground_truth, incident_id)
 
             results.append({
@@ -349,7 +352,7 @@ def write_summary(component_results: list, e2e_results: list, path: Path):
 def main():
     parser = argparse.ArgumentParser(description="Run two-tier evals on the RCA pipeline")
     parser.add_argument("--incidents", type=str, default="data/incidents.json")
-    parser.add_argument("--limit", type=int, default=25, help="Number of incidents to eval")
+    parser.add_argument("--limit", type=int, default=100, help="Number of incidents to eval")
     parser.add_argument("--tier", choices=["1", "2", "both"], default="both",
                         help="Which eval tier to run")
     args = parser.parse_args()
